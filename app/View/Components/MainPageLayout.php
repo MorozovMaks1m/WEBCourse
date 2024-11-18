@@ -8,13 +8,17 @@ use Illuminate\View\Component;
 
 class MainPageLayout extends Component
 {
+    public $title;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(?string $title = null)
     {
-        //
+        $this->title = $title;
     }
+
+
 
     /**
      * Get the view / contents that represent the component.

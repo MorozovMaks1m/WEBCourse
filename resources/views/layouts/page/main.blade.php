@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>{{$title}}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,16 +15,17 @@
 
 </head>
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-<!--
-This example requires updating your template:
-```
-<html class="h-full bg-gray-100">
-<body class="h-full">
-```
--->
+
+
 <div class="min-h-full">
 
     <x-page-header />
+
+    <header class="bg-white shadow">
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{$title ?? 'unknown' }}</h1>
+        </div>
+    </header>
 
     Hello before main
 
