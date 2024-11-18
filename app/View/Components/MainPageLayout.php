@@ -21,6 +21,6 @@ class MainPageLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.main-page-layout');
+        return view('layouts.page.main');
     }
 }

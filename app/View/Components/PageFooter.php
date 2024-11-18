@@ -21,6 +21,6 @@ class PageFooter extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.page-footer');
+        return view('layouts.page.footer');
     }
 }
