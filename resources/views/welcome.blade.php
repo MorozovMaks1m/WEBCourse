@@ -1,38 +1,22 @@
 <x-main-page-layout title="Morozov Maksim Personal Page"> 
 
-    <h2 class="font-bold text-3xl">Work experience</h2>
-
-    @foreach($works as $work)
-    <div class="mt-4">
-        <x-work-experience 
-            :employerName="$work->company" 
-            :workTitle="$work->title" 
-            :startDate="$work->start_date" 
-            :endDate="$work->end_date" 
-            :summary="$work->summary(100)"
-            :projects="$work->workProjects"
-        />
-
-        {{-- <x-title-with-interval 
-            :mainTitle="$work->company" 
-            :secondTitle="$work->title" 
-            :dateStart="$work->start_date" 
-            :dateEnd="$work->end_date" />
-        <p class="text-sm">Summary: {{$work->summary(100)}}</p>
-
-        <h2 class="font-bold text-xl">Projects</h2>
-        @foreach($work->workProjects as $project)
-            <div>
-                {{$project->title}}
-            </div>
-            <div>
-                @foreach($project->skills as $skill)
-                    <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">{{$skill->name}}</span>
+    {{-- <section class="py-12 bg-blue-50"> --}}
+        <div class="container mx-auto px-4">
+            <h2 class="font-extrabold text-4xl text-center mb-12">Work Experience</h2>
+                @foreach($works as $work)
+                    <x-work-experience 
+                        :employerName="$work->company" 
+                        :workTitle="$work->title" 
+                        :startDate="$work->start_date" 
+                        :endDate="$work->end_date" 
+                        :summary="$work->summary(100)"
+                        :projects="$work->workProjects"
+                    />
+                    <br>
                 @endforeach
-            </div>
-        @endforeach --}}
-    </div>
-    @endforeach
+        </div>
+    {{-- </section> --}}
+    
 
     <br><br>
 

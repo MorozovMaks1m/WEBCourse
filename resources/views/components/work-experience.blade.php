@@ -9,7 +9,7 @@
     'projects' => [], // Array of project names
 ])
 
-<div class="bg-white shadow rounded-lg p-6 mb-6">
+<div class="bg-blue-100 border-2 border-orange-300 shadow-lg rounded-xl p-6 hover:shadow-2xl transition-shadow duration-300">
     <div class="flex justify-between items-center">
         <div>
             <h3 class="text-xl font-semibold text-gray-800">{{ $workTitle }}</h3>
