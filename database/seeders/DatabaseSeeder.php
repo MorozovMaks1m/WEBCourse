@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Work;
 use App\Models\Education;
+use App\Models\Thesis;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         Education::factory(5)->create();
+        Thesis::factory(5)->create();
         Work::factory(5)->create();
 
         User::factory()->create([
