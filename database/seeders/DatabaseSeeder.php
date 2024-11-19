@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Work;
 use App\Models\Education;
 use App\Models\Thesis;
+use App\Models\WorkProject;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
         Education::factory(5)->create();
         Thesis::factory(5)->create();
         Work::factory(5)->create();
+        WorkProject::factory(20)->create();
 
         User::factory()->create([
             'name' => 'Test User',

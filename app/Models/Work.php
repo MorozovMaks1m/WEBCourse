@@ -15,4 +15,9 @@ class Work extends Model
     {
         return Str::of($this->description)->limit($lenght);
     }
+
+    public function workProjects()
+    {
+        return $this->hasMany(WorkProject::class, 'work_id');
+    }
 }
