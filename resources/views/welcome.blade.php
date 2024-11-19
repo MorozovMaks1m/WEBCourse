@@ -16,6 +16,11 @@
             <div>
                 {{$project->title}}
             </div>
+            <div>
+                @foreach($project->skills as $skill)
+                    <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">{{$skill->name}}</span>
+                @endforeach
+            </div>
         @endforeach
     </div>
     @endforeach
@@ -36,6 +41,11 @@
         <br>
         Thesis: {{$education->thesis->title}}
         <p class="text-sm">Sumary: {{$education->summary(100)}}</p>
+        <div>
+            @foreach($education->thesis->skills as $skill)
+                <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">{{$skill->name}}</span>
+            @endforeach
+        </div>
     </div>
     @endforeach
 

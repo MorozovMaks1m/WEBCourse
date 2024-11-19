@@ -14,4 +14,9 @@ class Thesis extends Model
     {
         return $this->belongsTo(Education::class, 'education_id');
     }
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'thesis_skill');
+    }
 }
