@@ -4,19 +4,12 @@
 
     @foreach($works as $work)
     <div class="mt-4">
-        <h2 class="font-bold text-2xl">{{$work->company}}</h2>
-        <h2 class="font-bold text-xl">{{$work->title}}</h2>
-        <div>
-            From
-            {{ \Carbon\Carbon::parse($work->start_date)->format('Y-m') }}
-            to
-            @if($work->end_date != null)
-                {{  \Carbon\Carbon::parse($work->end_date)->format('Y-m') }}
-            @else
-                present
-            @endif 
+        <x-title-with-interval 
+            :mainTitle="$work->company" 
+            :secondTitle="$work->title" 
+            :dateStart="$work->start_date" 
+            :dateEnd="$work->end_date" />
 
-        </div>
         <p class="text-sm">{{$work->summary(100)}}</p>
     </div>
     @endforeach
@@ -27,22 +20,15 @@
 
     @foreach($educations as $education)
     <div class="mt-4">
-        <h2 class="font-bold text-2xl">{{$education->school_name}}</h2>
-        <h2 class="font-bold text-xl">{{$education->stage}}</h2>
-        <div>
-            From
-            {{ \Carbon\Carbon::parse($education->start_date)->format('Y-m') }}
-            to
-            @if($education->end_date != null)
-                {{  \Carbon\Carbon::parse($education->end_date)->format('Y-m') }}
-            @else
-                present
-            @endif 
-            <br>
-            GPA = {{$education->gpa}}
-            <br>
-            Thesis: {{$education->thesis->title}}
-        </div>
+        <x-title-with-interval 
+            :mainTitle="$education->school_name" 
+            :secondTitle="$education->stage" 
+            :dateStart="$education->start_date" 
+            :dateEnd="$education->end_date" />
+
+        GPA = {{$education->gpa}}
+        <br>
+        Thesis: {{$education->thesis->title}}
         <p class="text-sm">{{$education->summary(100)}}</p>
     </div>
     @endforeach
