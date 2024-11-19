@@ -1,9 +1,11 @@
 <x-main-page-layout title="Morozov Maksim Personal Page"> 
 
+    <h2 class="font-bold text-3xl">Work experience</h2>
+
     @foreach($works as $work)
     <div class="mt-4">
         <h2 class="font-bold text-2xl">{{$work->company}}</h2>
-        <h3 class="font-bold text-xl">{{$work->title}}</h3>
+        <h2 class="font-bold text-xl">{{$work->title}}</h2>
         <div>
             From
             {{ \Carbon\Carbon::parse($work->start_date)->format('Y-m') }}
@@ -19,5 +21,4 @@
     </div>
     @endforeach
 
-    Hello world
 </x-main-page-layout>
