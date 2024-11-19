@@ -4,7 +4,16 @@
 
     @foreach($works as $work)
     <div class="mt-4">
-        <x-title-with-interval 
+        <x-work-experience 
+            :employerName="$work->company" 
+            :workTitle="$work->title" 
+            :startDate="$work->start_date" 
+            :endDate="$work->end_date" 
+            :summary="$work->summary(100)"
+            :projects="$work->workProjects"
+        />
+
+        {{-- <x-title-with-interval 
             :mainTitle="$work->company" 
             :secondTitle="$work->title" 
             :dateStart="$work->start_date" 
@@ -21,7 +30,7 @@
                     <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">{{$skill->name}}</span>
                 @endforeach
             </div>
-        @endforeach
+        @endforeach --}}
     </div>
     @endforeach
 
@@ -40,12 +49,13 @@
         GPA = {{$education->gpa}}
         <br>
         Thesis: {{$education->thesis->title}}
-        <p class="text-sm">Sumary: {{$education->summary(100)}}</p>
         <div>
             @foreach($education->thesis->skills as $skill)
                 <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">{{$skill->name}}</span>
             @endforeach
         </div>
+        <p class="text-sm">Sumary: {{$education->summary(100)}}</p>
+
     </div>
     @endforeach
 
