@@ -21,4 +21,28 @@
     </div>
     @endforeach
 
+    <br><br>
+
+    <h2 class="font-bold text-3xl">Education</h2>
+
+    @foreach($educations as $education)
+    <div class="mt-4">
+        <h2 class="font-bold text-2xl">{{$education->school_name}}</h2>
+        <h2 class="font-bold text-xl">{{$education->stage}}</h2>
+        <div>
+            From
+            {{ \Carbon\Carbon::parse($education->start_date)->format('Y-m') }}
+            to
+            @if($education->end_date != null)
+                {{  \Carbon\Carbon::parse($education->end_date)->format('Y-m') }}
+            @else
+                present
+            @endif 
+        </div>
+        <div> GPA = {{$education->gpa}}
+        </div>
+        <p class="text-sm">{{$education->summary(100)}}</p>
+    </div>
+    @endforeach
+
 </x-main-page-layout>
