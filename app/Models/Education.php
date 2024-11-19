@@ -15,4 +15,9 @@ class Education extends Model
     {
         return Str::of($this->description)->limit($lenght);
     }
+
+    public function thesis()
+    {
+        return $this->hasOne(Thesis::class, 'education_id');
+    }
 }

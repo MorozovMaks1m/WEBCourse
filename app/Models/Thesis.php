@@ -9,4 +9,9 @@ class Thesis extends Model
 {
     /** @use HasFactory<\Database\Factories\ThesisFactory> */
     use HasFactory;
+
+    public function thesis()
+    {
+        return $this->belongsTo(Education::class, 'education_id');
+    }
 }

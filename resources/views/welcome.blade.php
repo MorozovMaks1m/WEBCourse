@@ -38,8 +38,10 @@
             @else
                 present
             @endif 
-        </div>
-        <div> GPA = {{$education->gpa}}
+            <br>
+            GPA = {{$education->gpa}}
+            <br>
+            Thesis: {{$education->thesis->title}}
         </div>
         <p class="text-sm">{{$education->summary(100)}}</p>
     </div>

@@ -19,8 +19,7 @@ class ThesisFactory extends Factory
         return [
             'title' => fake()->sentence,
             'description' => fake()->realText(1000),
+            'education_id'=> fake()->unique()->numberBetween(1,5),
         ];
     }
 }
-
-
