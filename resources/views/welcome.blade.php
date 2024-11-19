@@ -2,8 +2,8 @@
 
     @foreach($works as $work)
     <div class="mt-4">
-        <h2 class="font-bold text-lg">{{$work->company}}</h2>
-        <h3 class="font-bold text-lg">{{$work->title}}</h3>
+        <h2 class="font-bold text-2xl">{{$work->company}}</h2>
+        <h3 class="font-bold text-xl">{{$work->title}}</h3>
         <div>
             From
             {{ \Carbon\Carbon::parse($work->start_date)->format('Y-m') }}
@@ -15,7 +15,7 @@
             @endif 
 
         </div>
-        <p class="text-sm">{{$work->description}}</p>
+        <p class="text-sm">{{$work->summary(100)}}</p>
     </div>
     @endforeach
 
