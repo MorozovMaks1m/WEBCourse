@@ -9,8 +9,14 @@
             :secondTitle="$work->title" 
             :dateStart="$work->start_date" 
             :dateEnd="$work->end_date" />
+        <p class="text-sm">Summary: {{$work->summary(100)}}</p>
 
-        <p class="text-sm">{{$work->summary(100)}}</p>
+        <h2 class="font-bold text-xl">Projects</h2>
+        @foreach($work->workProjects as $project)
+            <div>
+                {{$project->title}}
+            </div>
+        @endforeach
     </div>
     @endforeach
 
@@ -29,7 +35,7 @@
         GPA = {{$education->gpa}}
         <br>
         Thesis: {{$education->thesis->title}}
-        <p class="text-sm">{{$education->summary(100)}}</p>
+        <p class="text-sm">Sumary: {{$education->summary(100)}}</p>
     </div>
     @endforeach
 
