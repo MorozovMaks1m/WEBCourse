@@ -15,11 +15,12 @@ Route::get('educations', [\App\Http\Controllers\EducationController::class, 'ind
 Route::get('educations/{id}',[\App\Http\Controllers\EducationController::class, 'show']);
 
 // User pages (admin only now)
-Route::name('user.')->group(function() {
+require __DIR__.'/auth.php';
+Route::name('user.')->middleware(['auth', 'verified'])->group(function() {
     Route::resource('user/works', App\Http\Controllers\User\WorkController::class);
 });
 
-Route::name('user.')->group(function() {
+Route::name('user.')->middleware(['auth', 'verified'])->group(function() {
     Route::resource('user/educations', App\Http\Controllers\User\EducationController::class);
 });
 
@@ -34,4 +35,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
