@@ -14,6 +14,10 @@ Route::get('works/{id}',[\App\Http\Controllers\WorkController::class, 'show']);
 Route::get('educations', [\App\Http\Controllers\EducationController::class, 'index']);
 Route::get('educations/{id}',[\App\Http\Controllers\EducationController::class, 'show']);
 
+Route::name('user.')->group(function() {
+    Route::resource('user/works', App\Http\Controllers\User\WorkController::class);
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
