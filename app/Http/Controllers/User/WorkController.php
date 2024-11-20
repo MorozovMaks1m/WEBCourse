@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Work;
 
 class WorkController extends Controller
 {
@@ -12,7 +13,9 @@ class WorkController extends Controller
      */
     public function index()
     {
-        //
+        $works = Work::all();
+
+        return view('user.works.index', compact('works'));
     }
 
     /**
@@ -36,7 +39,9 @@ class WorkController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $work = Work::findOrFail($id);
+
+        return view('user.works.show', compact('work'));
     }
 
     /**
