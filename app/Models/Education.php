@@ -11,6 +11,8 @@ class Education extends Model
     /** @use HasFactory<\Database\Factories\EducationFactory> */
     use HasFactory;
 
+    protected $guarded = [];
+
     public function summary(int $lenght = 50): string
     {
         return Str::of($this->description)->limit($lenght);

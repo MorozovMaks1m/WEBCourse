@@ -23,6 +23,7 @@
         </div>
 
         <div class="mt-4">
+            @if ($education->thesis)
             <h4 class="text-md font-semibold text-gray-800">Thesis: {{ $education->thesis->title }}</h4>
             <ul class="list-disc list-inside mt-2 text-gray-700">
                 <div>
@@ -32,6 +33,7 @@
                     <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">{{$skill->name}}</span>
                 @endforeach    
             </ul>
+            @endif
         </div>
 
     </div>

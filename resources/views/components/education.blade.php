@@ -38,14 +38,16 @@
     </div>
     
     <!-- Thesis and Skills Section -->
-    <div class="mt-4">
-        <div class="flex justify-between items-center">
-            <p class="text-gray-700">Thesis: <span class="font-semibold">{{ $thesis->title }}</span></p>
+    @if ($thesis)
+        <div class="mt-4">
+            <div class="flex justify-between items-center">
+                <p class="text-gray-700">Thesis: <span class="font-semibold">{{ $thesis->title }}</span></p>
+            </div>
+            <div class="mt-2 flex flex-wrap gap-2">
+                @foreach($thesis->skills as $skill)
+                    <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">{{ $skill->name }}</span>
+                @endforeach
+            </div>
         </div>
-        <div class="mt-2 flex flex-wrap gap-2">
-            @foreach($thesis->skills as $skill)
-                <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">{{ $skill->name }}</span>
-            @endforeach
-        </div>
-    </div>
+    @endif
 </div>

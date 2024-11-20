@@ -14,9 +14,15 @@ Route::get('works/{id}',[\App\Http\Controllers\WorkController::class, 'show']);
 Route::get('educations', [\App\Http\Controllers\EducationController::class, 'index']);
 Route::get('educations/{id}',[\App\Http\Controllers\EducationController::class, 'show']);
 
+// User pages (admin only now)
 Route::name('user.')->group(function() {
     Route::resource('user/works', App\Http\Controllers\User\WorkController::class);
 });
+
+Route::name('user.')->group(function() {
+    Route::resource('user/educations', App\Http\Controllers\User\EducationController::class);
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
