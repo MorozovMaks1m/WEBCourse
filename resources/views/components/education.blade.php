@@ -18,9 +18,6 @@
             <p class="text-gray-600">{{ $stage }}</p>
         </div>
         <div class="flex flex-col items-end">
-            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
-                GPA: {{ $gpa }}
-            </span>
             <div class="text-sm text-gray-500 mt-2">
                 {{ \Carbon\Carbon::parse($startDate)->format('M Y') }} - 
                 @if($endDate)
@@ -29,6 +26,9 @@
                     Present
                 @endif
             </div>
+            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                GPA: {{ $gpa }}
+            </span>
         </div>
     </div>
     
