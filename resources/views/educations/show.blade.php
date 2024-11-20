@@ -1,5 +1,5 @@
 <x-main-page-layout title="{{ $education->school_name }}">
-    <div class="max-w-4xl ml-1 mr-1 bg-gradient-to-r from-green-100 to-green-200 border border-yellow-400 shadow-md hover:shadow-xl rounded-2xl p-8 transition-all duration-300 transform hover:-translate-y-1">
+    <div class="max-w-4xl ml-1 mr-1 bg-gradient-to-r bg-green-100 border-2 border-yellow-300 shadow-md hover:shadow-xl rounded-2xl p-8 transition-all duration-300 transform hover:-translate-y-1">
         <!-- Header Section: Company and Duration -->
         <div class="flex flex-col md:flex-row justify-between items-center">
             <div>

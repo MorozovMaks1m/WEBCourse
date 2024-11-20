@@ -10,9 +10,9 @@ class WelcomeController extends Controller
 {
     public function __invoke()
     {
-        $works = Work::all()->sortByDesc('start_date');
-        $educations = Education::all()->sortByDesc('start_date');
+        $lastWork = Work::all()->sortByDesc('start_date')->get(1);
+        $lastEducation = Education::all()->sortByDesc('start_date')->get(1);
 
-        return view('welcome')->with('works', $works)->with('educations', $educations);;
+        return view('welcome')->with('work', $lastWork)->with('education', $lastEducation);;
     }
 }
