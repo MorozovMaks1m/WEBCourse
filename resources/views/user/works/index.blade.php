@@ -1,4 +1,12 @@
 <x-main-page-layout title="Work Experience Admin Panel">
+
+    @if(session()->has('success'))
+        <div class="bg-green-100 text-green-500 p-2">
+            {!! session()->get('success') !!}
+        </div>
+    @endif
+
+
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-semibold">Work Experience</h1>
         <a href="{{ route('user.works.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
@@ -31,6 +39,9 @@
                             {{ $work->title }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200 text-right">
+                            <a href="{{ route('user.works.show', $work) }}" class="text-green-500 hover:text-green-700 mr-2">
+                                Inspect
+                            </a>
                             <!-- Edit Link -->
                             <a href="{{ route('user.works.edit', $work) }}" class="text-blue-500 hover:text-blue-700 mr-2">
                                 Edit

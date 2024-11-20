@@ -39,6 +39,8 @@ class WorkController extends Controller
             'end_date' => $request->end_date,
         ]);
 
+        session()->flash('success', 'Company [<span class="font-bold">'.$work->company.'</span>] with title [<span class="font-bold">'.$work->title.'</span>] created successfully');
+
         return redirect()->route('user.works.index');
     }
 
@@ -77,6 +79,8 @@ class WorkController extends Controller
             'end_date' => $request->end_date,
         ]);
 
+        session()->flash('success', 'Company [<span class="font-bold">'.$work->company.'</span>] with title [<span class="font-bold">'.$work->title.'</span>] updated successfully');
+
         return redirect()->route('user.works.index');
     }
 
@@ -88,6 +92,8 @@ class WorkController extends Controller
         $work = Work::findOrFail($id);
 
         $work->delete();
+
+        session()->flash('success', 'Company [<span class="font-bold">'.$work->company.'</span>] with title [<span class="font-bold">'.$work->title.'</span>] deleted successfully');
 
         return redirect()->route('user.works.index');
     }
