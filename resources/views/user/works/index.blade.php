@@ -31,10 +31,23 @@
                             {{ $work->title }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200 text-right">
-                            <a href="{{ route('user.works.edit', $work) }}" class="text-blue-500 hover:text-blue-700">
+                            <!-- Edit Link -->
+                            <a href="{{ route('user.works.edit', $work) }}" class="text-blue-500 hover:text-blue-700 mr-2">
                                 Edit
                             </a>
-                            <!-- Optionally, add a delete button here -->
+                        
+                            <!-- Delete Form -->
+                            <form action="{{ route('user.works.destroy', $work) }}" method="POST" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button 
+                                    type="submit" 
+                                    onclick="return confirm('Are you sure you want to delete this work experience?')" 
+                                    class="text-red-500 hover:text-red-700 font-medium"
+                                >
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @empty

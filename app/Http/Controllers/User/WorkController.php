@@ -85,6 +85,10 @@ class WorkController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $work = Work::findOrFail($id);
+
+        $work->delete();
+
+        return redirect()->route('user.works.index');
     }
 }
