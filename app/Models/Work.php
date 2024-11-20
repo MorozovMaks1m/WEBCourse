@@ -11,6 +11,8 @@ class Work extends Model
     /** @use HasFactory<\Database\Factories\WorkFactory> */
     use HasFactory;
 
+    protected $guarded = [];
+
     public function summary(int $lenght = 50): string
     {
         return Str::of($this->description)->limit($lenght);

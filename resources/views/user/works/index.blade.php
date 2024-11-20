@@ -4,6 +4,7 @@
             <li>
                 Company: {{$work->company}}
                 Title: {{$work->title}}
+                <a href="{{route('user.works.edit', $work)}}">edit</a>
             </li>
         @endforeach
     </ul>

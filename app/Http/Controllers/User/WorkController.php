@@ -49,7 +49,9 @@ class WorkController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $work = Work::find($id);
+
+        return view('user.works.edit', compact('work'));
     }
 
     /**
@@ -57,7 +59,15 @@ class WorkController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $work = Work::find($id);
+
+        $work->update([
+            'company' => $request->company,
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('user.works.index');
     }
 
     /**
