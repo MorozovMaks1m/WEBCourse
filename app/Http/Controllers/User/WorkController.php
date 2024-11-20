@@ -23,7 +23,7 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.works.create');
     }
 
     /**
@@ -31,7 +31,15 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $work = Work::create([
+            'company' => $request->company,
+            'title' => $request->title,
+            'description' => $request->description,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+        ]);
+
+        return redirect()->route('user.works.index');
     }
 
     /**
@@ -65,6 +73,8 @@ class WorkController extends Controller
             'company' => $request->company,
             'title' => $request->title,
             'description' => $request->description,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
         ]);
 
         return redirect()->route('user.works.index');

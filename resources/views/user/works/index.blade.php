@@ -1,4 +1,7 @@
-<x-main-page-layout title="Work experience">
+<x-main-page-layout title="Work experience admin panel">
+
+    <a href="{{route('user.works.create')}}">create work</a>
+
     <ul class="list-disc pl-4">
         @foreach($works as $work)
             <li>
