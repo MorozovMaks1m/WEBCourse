@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', \App\Http\Controllers\WelcomeController::class);
 
+// Route::get('works', [\App\Http\Controllers\WorkController::class, 'index']);
+Route::get('works/{id}',[\App\Http\Controllers\WorkController::class, 'show']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
