@@ -38,6 +38,31 @@
             @enderror
         </div>
 
+        <!-- Skills Selection with Checkboxes -->
+        <div class="mb-4">
+            <label class="block text-gray-700">Select Skills</label>
+            <div class="mt-2 grid grid-cols-2 gap-2">
+                @foreach($skills as $skill)
+                    <label class="flex items-center">
+                        <input 
+                            type="checkbox" 
+                            name="skills[]" 
+                            value="{{ $skill->id }}" 
+                            class="form-checkbox h-5 w-5 text-blue-600"
+                            {{ (is_array(old('skills')) && in_array($skill->id, old('skills'))) || (!old('skills') && $thesis->skills->contains($skill->id)) ? 'checked' : '' }}
+                        >
+                        <span class="ml-2 text-gray-700">{{ $skill->name }}</span>
+                    </label>
+                @endforeach
+            </div>
+            @error('skills')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+            @error('skills.*')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+
 
         <!-- Submit and Undo Buttons -->
         <div class="flex justify-end items-center space-x-4">

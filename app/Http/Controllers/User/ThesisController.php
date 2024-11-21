@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Thesis;
 use App\Models\Education;
+use App\Models\Skill;
 
 class ThesisController extends Controller
 {
@@ -23,7 +24,10 @@ class ThesisController extends Controller
             return redirect()->route('user.educations.index')->with('info', 'Thesis already exists for this education.');
         }
 
-        return view('user.theses.create', compact('education'));
+        $skills = Skill::all();
+
+        // Pass skills to the view
+        return view('user.theses.create', compact('education', 'skills'));
     }
 
     /**
@@ -31,12 +35,22 @@ class ThesisController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the incoming request data
+        $validated = $request->validate([
+            'skills' => 'array', // Ensure it's an array
+            'skills.*' => 'exists:skills,id', // Each skill must exist
+        ]);
+
         // Create the Thesis
         $thesis = Thesis::create([
             'title' => $request->title,
             'description' => $request->description,
             'education_id' => $request->education_id,
         ]);
+
+        if (isset($validated['skills'])) {
+            $thesis->skills()->attach($validated['skills']);
+        }
 
         // Flash success message to the session
         session()->flash('success', 'Thesis [<span class="font-bold">' . $thesis->title . '</span>] created successfully');
@@ -52,7 +66,9 @@ class ThesisController extends Controller
     {
         $thesis = Thesis::find($id);
 
-        return view('user.theses.edit', compact('thesis'));
+        $skills = Skill::all();
+
+        return view('user.theses.edit', compact('thesis', 'skills'));
     }
 
     /**
@@ -60,6 +76,12 @@ class ThesisController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // Validate the incoming request data
+        $validated = $request->validate([
+            'skills' => 'array', // Ensure it's an array
+            'skills.*' => 'exists:skills,id', // Each skill must exist
+        ]);
+
         $thesis = Thesis::find($id);
         $education_id = $thesis->education_id;
 
@@ -68,6 +90,13 @@ class ThesisController extends Controller
             'description' => $request->description,
             'education_id' => $education_id,
         ]);
+
+        if (isset($validated['skills'])) {
+            $thesis->skills()->sync($validated['skills']);
+        } else {
+            // If no skills are selected, detach all existing skills
+            $thesis->skills()->detach();
+        }
 
         session()->flash('success', 'Thesis [<span class="font-bold">'.$thesis->title.'</span>] updates successfully');
 
