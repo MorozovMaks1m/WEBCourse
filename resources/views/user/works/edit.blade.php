@@ -61,7 +61,7 @@
                 type="date" 
                 name="start_date" 
                 id="start_date" 
-                value="{{ old('start_date', $work->start_date) }}" 
+                value="{{ old('start_date', $work->start_date ? $work->start_date->format('Y-m-d') : '') }}" 
                 class="mt-1 block w-full border border-gray-300 rounded-md p-2"
                 required
             >
@@ -79,7 +79,7 @@
                 type="date" 
                 name="end_date" 
                 id="end_date" 
-                value="{{ old('end_date', $work->end_date) }}" 
+                value="{{ old('end_date', $work->end_date ? $work->end_date->format('Y-m-d') : '') }}" 
                 class="mt-1 block w-full border border-gray-300 rounded-md p-2"
             >
             @error('end_date')

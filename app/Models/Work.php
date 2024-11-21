@@ -13,6 +13,11 @@ class Work extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
+    ];
+
     public function summary(int $lenght = 50): string
     {
         return Str::of($this->description)->limit($lenght);
