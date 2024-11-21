@@ -16,14 +16,18 @@ Route::get('educations/{id}',[\App\Http\Controllers\EducationController::class, 
 
 // User pages (admin only now)
 require __DIR__.'/auth.php';
+
 Route::name('user.')->middleware(['auth', 'verified'])->group(function() {
     Route::resource('user/works', App\Http\Controllers\User\WorkController::class);
-});
 
-Route::name('user.')->middleware(['auth', 'verified'])->group(function() {
     Route::resource('user/educations', App\Http\Controllers\User\EducationController::class);
-});
 
+    Route::get('user/educations/{education_id}/theses/create', [App\Http\Controllers\User\ThesisController::class, 'create'])->name('theses.create');
+    Route::post('user/theses', [App\Http\Controllers\User\ThesisController::class, 'store'])->name('theses.store');
+    Route::get('user/theses/{thesis}/edit', [App\Http\Controllers\User\ThesisController::class, 'edit'])->name('theses.edit');
+    Route::put('user/theses/{thesis}', [App\Http\Controllers\User\ThesisController::class, 'update'])->name('theses.update');
+    Route::delete('user/theses/{thesis}', [App\Http\Controllers\User\ThesisController::class, 'destroy'])->name('theses.destroy');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,5 +38,3 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-

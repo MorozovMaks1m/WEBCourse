@@ -10,7 +10,7 @@ class Skill extends Model
     /** @use HasFactory<\Database\Factories\SkillFactory> */
     use HasFactory;
 
-    public function thesises()
+    public function theses()
     {
         return $this->belongsToMany(Thesis::class, 'thesis_skill');
     }
