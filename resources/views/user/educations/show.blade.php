@@ -1,4 +1,7 @@
 <x-main-page-layout title="{{ $education->school_name }}">
+    @if ($education->media->first() != null) 
+        <img src="{{$education->media->first()->getUrl()}}">
+    @endif
 
     @if(session()->has('success'))
         <div class="bg-green-100 text-green-500 p-2">

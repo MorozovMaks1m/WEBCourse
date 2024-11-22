@@ -81,6 +81,18 @@ class EducationController extends Controller
             'end_date' => $request->end_date,
         ]);
 
+        if ($request->has('image')) {
+
+            // Remove existing image if any
+            if ($education->hasMedia('images')) {
+                $education->clearMediaCollection('images');
+            }
+
+            // Add the new image
+            $education->addMediaFromRequest('image')
+                     ->toMediaCollection('images');
+        }
+
         session()->flash('success', 'Education [<span class="font-bold">'.$education->school_name.'</span>] with stage [<span class="font-bold">'.$education->stage.'</span>] updated successfully');
 
         return redirect()->route('user.educations.index');
