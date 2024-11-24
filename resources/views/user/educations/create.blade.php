@@ -2,7 +2,9 @@
     <form
         action="{{ route('user.educations.store') }}"
         method="POST" 
-        class="max-w-lg mx-auto p-6 bg-white rounded-md shadow-md">
+        class="max-w-lg mx-auto p-6 bg-white rounded-md shadow-md"
+        enctype="multipart/form-data"
+    >
         @csrf
 
         <!-- School Name Field -->
@@ -100,6 +102,10 @@
                 <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
         </div>
+
+        <!-- Image Upload Field with File Name Display -->
+        <input type="file" name="image">
+        @php $name='image'; @endphp
 
         <!-- Submit and Undo Buttons -->
         <div class="flex justify-end items-center space-x-4">
