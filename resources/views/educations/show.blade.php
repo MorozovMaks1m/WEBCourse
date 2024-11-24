@@ -14,6 +14,16 @@
                 @endif
             </div>
         </div>
+
+        <div style="display: flex;">
+            @if ($education->media->first())
+                <img 
+                    src="{{ $education->media->first()->getUrl() }}" 
+                    alt="Education Image" 
+                    style="width: 450px; height: 338px; object-fit: cover;"
+                >
+            @endif
+        </div>
         
         <!-- Description Section -->
         <div class="mt-6">
