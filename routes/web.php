@@ -27,6 +27,12 @@ Route::name('user.')->middleware(['auth', 'verified'])->group(function() {
     Route::get('user/theses/{thesis}/edit', [App\Http\Controllers\User\ThesisController::class, 'edit'])->name('theses.edit');
     Route::put('user/theses/{thesis}', [App\Http\Controllers\User\ThesisController::class, 'update'])->name('theses.update');
     Route::delete('user/theses/{thesis}', [App\Http\Controllers\User\ThesisController::class, 'destroy'])->name('theses.destroy');
+
+    Route::get('user/works/{work_id}/workprojects/create', [App\Http\Controllers\User\WorkProjectController::class, 'create'])->name('workprojects.create');
+    Route::post('user/workprojects', [App\Http\Controllers\User\WorkProjectController::class, 'store'])->name('workprojects.store');
+    Route::get('user/workprojects/{workproject_id}/edit', [App\Http\Controllers\User\WorkProjectController::class, 'edit'])->name('workprojects.edit');
+    Route::put('user/workprojects/{workproject_id}', [App\Http\Controllers\User\WorkProjectController::class, 'update'])->name('workprojects.update');
+    Route::delete('user/workprojects/{workproject_id}', [App\Http\Controllers\User\WorkProjectController::class, 'destroy'])->name('workprojects.destroy');
 });
 
 Route::get('/dashboard', function () {
