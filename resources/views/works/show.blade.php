@@ -14,6 +14,16 @@
                 @endif
             </div>
         </div>
+
+        <div style="display: flex;">
+            @if ($work->media->first())
+                <img 
+                    src="{{ $work->media->first()->getUrl() }}" 
+                    alt="Work Image" 
+                    style="width: 450px; height: 338px; object-fit: cover;"
+                >
+            @endif
+        </div>
         
         <!-- Description Section -->
         <div class="mt-6">

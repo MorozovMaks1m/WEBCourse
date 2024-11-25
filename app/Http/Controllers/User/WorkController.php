@@ -39,6 +39,16 @@ class WorkController extends Controller
             'end_date' => $request->end_date,
         ]);
 
+        if ($request->has('image')) {
+            // Remove existing image if any
+            if ($work->hasMedia('images')) {
+                $work->clearMediaCollection('images');
+            }
+            // Add the new image
+            $work->addMediaFromRequest('image')
+                     ->toMediaCollection('images');
+        }
+
         session()->flash('success', 'Company [<span class="font-bold">'.$work->company.'</span>] with title [<span class="font-bold">'.$work->title.'</span>] created successfully');
 
         return redirect()->route('user.works.index');
@@ -78,6 +88,16 @@ class WorkController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
         ]);
+
+        if ($request->has('image')) {
+            // Remove existing image if any
+            if ($work->hasMedia('images')) {
+                $work->clearMediaCollection('images');
+            }
+            // Add the new image
+            $work->addMediaFromRequest('image')
+                     ->toMediaCollection('images');
+        }
 
         session()->flash('success', 'Company [<span class="font-bold">'.$work->company.'</span>] with title [<span class="font-bold">'.$work->title.'</span>] updated successfully');
 

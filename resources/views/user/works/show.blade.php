@@ -1,4 +1,8 @@
 <x-main-page-layout title="{{ $work->title }}">
+    @if ($work->media->first() != null) 
+        <img src="{{$work->media->first()->getUrl()}}">
+    @endif
+
     <!-- Header Section: Company and Duration -->
     <div class="flex flex-col md:flex-row justify-between items-center">
         <div>
