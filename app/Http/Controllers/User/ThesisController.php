@@ -35,17 +35,18 @@ class ThesisController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the incoming request data
         $validated = $request->validate([
-            'skills' => 'array', // Ensure it's an array
-            'skills.*' => 'exists:skills,id', // Each skill must exist
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'education_id' => 'required',
+            'skills' => 'nullable|array',
+            'skills.*' => 'exists:skills,id',
         ]);
 
-        // Create the Thesis
         $thesis = Thesis::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'education_id' => $request->education_id,
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'education_id' => $validated['education_id'],
         ]);
 
         if (isset($validated['skills'])) {
@@ -78,16 +79,18 @@ class ThesisController extends Controller
     {
         // Validate the incoming request data
         $validated = $request->validate([
-            'skills' => 'array', // Ensure it's an array
-            'skills.*' => 'exists:skills,id', // Each skill must exist
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'skills' => 'nullable|array',
+            'skills.*' => 'exists:skills,id',
         ]);
 
         $thesis = Thesis::find($id);
         $education_id = $thesis->education_id;
 
         $thesis->update([
-            'title' => $request->title,
-            'description' => $request->description,
+            'title' => $validated['title'],
+            'description' => $validated['description'],
             'education_id' => $education_id,
         ]);
 

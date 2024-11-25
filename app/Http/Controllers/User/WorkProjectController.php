@@ -32,15 +32,18 @@ class WorkProjectController extends Controller
     {
         // Validate the incoming request data
         $validated = $request->validate([
-            'skills' => 'array', // Ensure it's an array
-            'skills.*' => 'exists:skills,id', // Each skill must exist
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'work_id' => 'required',
+            'skills' => 'nullable|array',
+            'skills.*' => 'exists:skills,id',
         ]);
 
         // Create the WorkProject
         $work_project = WorkProject::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'work_id' => $request->work_id,
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'education_id' => $validated['work_id'],
         ]);
 
         if (isset($validated['skills'])) {
@@ -73,16 +76,18 @@ class WorkProjectController extends Controller
     {
         // Validate the incoming request data
         $validated = $request->validate([
-            'skills' => 'array', // Ensure it's an array
-            'skills.*' => 'exists:skills,id', // Each skill must exist
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'skills' => 'nullable|array',
+            'skills.*' => 'exists:skills,id',
         ]);
 
         $work_project = WorkProject::find($id);
         $work_id = $work_project->work_id;
 
         $work_project->update([
-            'title' => $request->title,
-            'description' => $request->description,
+            'title' => $validated['title'],
+            'description' => $validated['description'],
             'work_id' => $work_id,
         ]);
 

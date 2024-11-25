@@ -31,13 +31,23 @@ class EducationController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'school_name' => 'required|string|max:255',
+            'stage' => 'required|string|max:100',
+            'gpa' => 'required|numeric|min:0|max:5', // Adjust the max value based on your GPA scale
+            'description' => 'required|string|max:1000',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after:start_date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:24576', // Max 24 mb
+        ]);
+
         $education = Education::create([
-            'school_name' => $request->school_name,
-            'stage' => $request->stage,
-            'gpa' => $request->gpa,
-            'description' => $request->description,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            'school_name' => $validatedData['school_name'],
+            'stage' => $validatedData['stage'],
+            'gpa' => $validatedData['gpa'],
+            'description' => $validatedData['description'],
+            'start_date' => $validatedData['start_date'],
+            'end_date' => $validatedData['end_date'] ?? null,
         ]);
 
         if ($request->has('image')) {
@@ -84,13 +94,28 @@ class EducationController extends Controller
     {
         $education = Education::find($id);
 
+        if (!$education) {
+            return redirect()->back()->with('error', 'Education record not found.');
+        }
+
+        $validatedData = $request->validate([
+            'school_name' => 'required|string|max:255',
+            'stage' => 'required|string|max:100',
+            'gpa' => 'required|numeric|min:0|max:5', // Adjust the max value based on your GPA scale
+            'description' => 'required|string|max:1000',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after:start_date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:24576', // Max 24 mb
+        ]);
+
+        // Step 3: Update the Education record with validated data
         $education->update([
-            'school_name' => $request->school_name,
-            'stage' => $request->stage,
-            'gpa' => $request->gpa,
-            'description' => $request->description,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            'school_name' => $validatedData['school_name'],
+            'stage' => $validatedData['stage'],
+            'gpa' => $validatedData['gpa'],
+            'description' => $validatedData['description'],
+            'start_date' => $validatedData['start_date'],
+            'end_date' => $validatedData['end_date'] ?? null,
         ]);
 
         if ($request->has('image')) {

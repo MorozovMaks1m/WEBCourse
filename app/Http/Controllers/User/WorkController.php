@@ -31,12 +31,21 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'company' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after:start_date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:24576', // Max 24MB
+        ]);
+
         $work = Work::create([
-            'company' => $request->company,
-            'title' => $request->title,
-            'description' => $request->description,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            'company' => $validatedData['company'],
+            'title' => $validatedData['title'],
+            'description' => $validatedData['description'],
+            'start_date' => $validatedData['start_date'],
+            'end_date' => $validatedData['end_date'] ?? null,
         ]);
 
         if ($request->has('image')) {
@@ -79,14 +88,23 @@ class WorkController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validatedData = $request->validate([
+            'company' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after:start_date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:24576', // Max 24MB
+        ]);
+
         $work = Work::find($id);
 
         $work->update([
-            'company' => $request->company,
-            'title' => $request->title,
-            'description' => $request->description,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            'company' => $validatedData['company'],
+            'title' => $validatedData['title'],
+            'description' => $validatedData['description'],
+            'start_date' => $validatedData['start_date'],
+            'end_date' => $validatedData['end_date'] ?? null,
         ]);
 
         if ($request->has('image')) {
