@@ -108,7 +108,6 @@ class EducationController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:24576', // Max 24 mb
         ]);
 
-        // Step 3: Update the Education record with validated data
         $education->update([
             'school_name' => $validatedData['school_name'],
             'stage' => $validatedData['stage'],

@@ -43,7 +43,7 @@ class WorkProjectController extends Controller
         $work_project = WorkProject::create([
             'title' => $validated['title'],
             'description' => $validated['description'],
-            'education_id' => $validated['work_id'],
+            'work_id' => $validated['work_id'],
         ]);
 
         if (isset($validated['skills'])) {
